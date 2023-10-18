@@ -17,6 +17,10 @@ $(document).ready(() => {
       let time = new Date().getTime();
       $tweet.append(time);
 
+      $tweet.on('click', function() {
+        console.log(streams.users[tweet.user]);
+      });
+
       return $div.prepend($tweet);
     });
   };
@@ -30,7 +34,9 @@ $(document).ready(() => {
     $tweets();
     new Date().getTime();
   });
- 
+  // add click to tweet, inside of tweets function?
+  // or change tweets function, so each individual tweet can be accessed?
+
   // $body.append($tweets); // change from adding an entire array to just adding individual tweets
   // $div.append($tweets);
   // put inside map function?
