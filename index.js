@@ -11,13 +11,28 @@ $(document).ready(() => {
     return streams.home.map((tweet) => {
       const $tweet = $('<div></div>');
       $tweet.attr('class', 'old-tweets');
-      const text = `@${tweet.user}: ${tweet.message}`;
+  
+      // make username it's own div, id : username
+      let $username = $('<div></div>');
+      $username.attr('id', 'username');
+
+      // const text = `@${username}: ${tweet.message}`;
+      const text = `${tweet.message}`;
+      const un = `${tweet.user}`;
 
       $tweet.text(text);
+      $username.text(un);
+      // prepend $username to $tweet, will show up on different lines
+      // figure out how to have username on one line and tweet next line
+      // css display inline-block, add later when styling
+      $tweet.prepend($username);
+
       let time = new Date().getTime();
       $tweet.append(time);
 
-      $tweet.on('click', function() {
+      // create variable for username, add click function
+      $username.on('click', function() {
+        // what to do here so only users tweets show
         console.log(streams.users[tweet.user]);
       });
 
