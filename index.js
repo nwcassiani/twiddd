@@ -97,40 +97,21 @@ $(document).ready(() => {
 
   $body.prepend($form);
   // on button click, post tweet and sending data to streams? or make new similar object for user
-  const userStream = {
-    home: [],
-    users: {},
-  };
+  // const userStream = {
+  //   home: [],
+  //   users: {},
+  // };
   $('#sendtwidd').on('click', function() {
-    console.log($('#name').val() + " " + $('#msg').val());
-    console.log(typeof $('#name').val());
-    $usertweets();
-  })
-  // make a $usertweets function, that is invoked on send button click
-  // $usertweets function will push data from form to streams object, and then pull from that object to post
-  const $usertweets = function() {
-    // access data from form, add data to userStream obj
-    let $uname = `@${$('#name').val()}`;
+    // console.log($('#name').val() + " " + $('#msg').val());
+    // console.log(typeof $('#name').val());
+    let $uname = $('#name').val();
     let $umsg = $('#msg').val();
-    // add data to userStream obj
-    if(!userStream.users[$uname]) {
-      userStream.users[$uname] = [$umsg];
-    } else {
-      userStream.users[$uname].unshift($umsg);
-    }
-    console.log(userStream);
-
-    // pull from userStream obj to post to timeline
-    // create tweet
-    // prepend username to tweet
-    // map?
-    // each time function is invoked, the first value of the users tweet array is posted to timeline
-    // let $tweet = $('div').attr('id', 'user-tweet');
-    // $tweet.text(`${$uname}: ${userStream.users[$uname].slice(0, 1)}`);
-    // console.log($tweet);
-    // todo later: timestamp added on function invocation
-
-  };
+    window.visitor = $uname;
+    streams.users[window.visitor] = [];
+    console.log(streams.users);
+    writeTweet($umsg);
+    // $('#timeline').prepend(streams.users[window.visitor].slice(0, 1));
+  });
   
   // $body.append($tweets); // change from adding an entire array to just adding individual tweets
 
