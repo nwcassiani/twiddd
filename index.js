@@ -34,15 +34,17 @@ $(document).ready(() => {
 
       // time variable 
       const $time = $('<span>');
-      let time = ` ${moment(tweet.created_at).fromNow()}`;
+      let time = ` ${moment(tweet.created_at).fromNow()}`; // 
+      let timeStamp = ` ${tweet.created_at.toLocaleString()}`;
       $time.text(time);
       $time.css('color', 'gray');
       // console.log(typeof time);
       // append time to $tweet
       $username.append($time);
       $tweet.prepend($username);
+      $tweet.append(timeStamp);
       // $tweet.append($time);
-      $tweet.css('padding', '2');
+      // $tweet.css('padding', '2');
 
       // create variable for username, add click function
       $username.on('click', function() {
@@ -54,7 +56,7 @@ $(document).ready(() => {
           const $usertweet = $('<div></div>');
           $usertweet.attr('class', 'users-tweets');
           $usertweet.text(streams.users[tweet.user][i].message);
-          // $usertweet.append(time);
+          $usertweet.append(timeStamp);
           $usertweet.prepend($username);
           $usertweet.css('padding', '2');
           $div.prepend($usertweet);
